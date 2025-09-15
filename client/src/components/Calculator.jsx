@@ -10,7 +10,6 @@ const Calculator = () => {
   const [isRadians, setIsRadians] = useState(true);
   const [showConfetti, setShowConfetti] = useState(false);
 
-  // Confetti Animation Component
   const ConfettiExplosion = () => {
     const particles = Array.from({ length: 50 }, (_, i) => (
       <div
@@ -41,7 +40,6 @@ const Calculator = () => {
     );
   };
 
-  // Check for confetti trigger (99 and 33)
   const checkConfettiTrigger = (operation, val1, val2) => {
     const num1 = parseFloat(val1);
     const num2 = parseFloat(val2);
@@ -86,7 +84,6 @@ const Calculator = () => {
       const currentValue = previousValue || 0;
       let result;
 
-      // Check for confetti before calculation
       checkConfettiTrigger(operation, currentValue, inputValue);
 
       switch (operation) {
