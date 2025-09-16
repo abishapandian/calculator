@@ -90,16 +90,16 @@ const Calculator = () => {
         case "+":
           result = currentValue + inputValue;
           break;
-        case "−":
+        case "-":
           result = currentValue - inputValue;
           break;
-        case "×":
+        case "*":
           result = currentValue * inputValue;
           break;
-        case "÷":
+        case "/":
           result = inputValue !== 0 ? currentValue / inputValue : 0;
           break;
-        case "xʸ":
+        case "x^y":
           result = Math.pow(currentValue, inputValue);
           break;
         default:
@@ -153,34 +153,34 @@ const Calculator = () => {
       case "ln":
         result = inputValue > 0 ? Math.log(inputValue) : 0;
         break;
-      case "log₁₀":
+      case "log10":
         result = inputValue > 0 ? Math.log10(inputValue) : 0;
         break;
-      case "x²":
+      case "x^2":
         result = inputValue * inputValue;
         break;
-      case "x³":
+      case "x^3":
         result = inputValue * inputValue * inputValue;
         break;
-      case "²√x":
+      case "sqrt":
         result = inputValue >= 0 ? Math.sqrt(inputValue) : 0;
         break;
-      case "³√x":
+      case "cbrt":
         result = Math.cbrt(inputValue);
         break;
-      case "ʸ√x":
+      case "nthRoot":
         result = Math.pow(inputValue, 1 / 2);
         break;
-      case "eˣ":
+      case "exp":
         result = Math.exp(inputValue);
         break;
-      case "10ˣ":
+      case "10^x":
         result = Math.pow(10, inputValue);
         break;
-      case "¹/x":
+      case "1/x":
         result = inputValue !== 0 ? 1 / inputValue : 0;
         break;
-      case "x!":
+      case "fact":
         if (inputValue < 0 || !Number.isInteger(inputValue)) {
           result = 0;
         } else {
@@ -210,7 +210,7 @@ const Calculator = () => {
   const insertConstant = (constant) => {
     let value;
     switch (constant) {
-      case "π":
+      case "pi":
         value = Math.PI;
         break;
       case "e":
@@ -275,316 +275,59 @@ const Calculator = () => {
         </div>
 
         <div className="grid grid-cols-10 gap-1 text-white">
-          <Button
-            onClick={() => {}}
-            className="bg-[#2d2d2d] hover:bg-gray-500 text-sm"
-          >
-            (
-          </Button>
-          <Button
-            onClick={() => {}}
-            className="bg-[#2d2d2d] hover:bg-gray-500 text-sm"
-          >
-            )
-          </Button>
-          <Button
-            onClick={() => memoryOperation("mc")}
-            className="bg-[#2d2d2d] hover:bg-gray-500 text-sm"
-          >
-            mc
-          </Button>
-          <Button
-            onClick={() => memoryOperation("m+")}
-            className="bg-[#2d2d2d] hover:bg-gray-500 text-sm"
-          >
-            m+
-          </Button>
-          <Button
-            onClick={() => memoryOperation("m-")}
-            className="bg-[#2d2d2d] hover:bg-gray-500 text-sm"
-          >
-            m-
-          </Button>
-          <Button
-            onClick={() => memoryOperation("mr")}
-            className="bg-[#2d2d2d] hover:bg-gray-500 text-sm"
-          >
-            mr
-          </Button>
-          <Button
-            onClick={clear}
-            className="bg-[#2d2d2d] hover:bg-gray-500 text-sm"
-          >
-            C
-          </Button>
-          <Button
-            onClick={() => scientificOperation("+/-")}
-            className="bg-[#2d2d2d] hover:bg-gray-500 text-sm"
-          >
-            +/-
-          </Button>
-          <Button
-            onClick={() => scientificOperation("%")}
-            className="bg-[#2d2d2d] hover:bg-gray-500 text-sm"
-          >
-            %
-          </Button>
-          <Button
-            onClick={() => performOperation("÷")}
-            className="bg-orange-500 hover:bg-orange-400 text-white"
-            isPressed={operation === "÷"}
-          >
-            ÷
-          </Button>
+          <Button onClick={() => {}} className="bg-[#2d2d2d] hover:bg-gray-500 text-sm">(</Button>
+          <Button onClick={() => {}} className="bg-[#2d2d2d] hover:bg-gray-500 text-sm">)</Button>
+          <Button onClick={() => memoryOperation("mc")} className="bg-[#2d2d2d] hover:bg-gray-500 text-sm">mc</Button>
+          <Button onClick={() => memoryOperation("m+")} className="bg-[#2d2d2d] hover:bg-gray-500 text-sm">m+</Button>
+          <Button onClick={() => memoryOperation("m-")} className="bg-[#2d2d2d] hover:bg-gray-500 text-sm">m-</Button>
+          <Button onClick={() => memoryOperation("mr")} className="bg-[#2d2d2d] hover:bg-gray-500 text-sm">mr</Button>
+          <Button onClick={clear} className="bg-[#2d2d2d] hover:bg-gray-500 text-sm">C</Button>
+          <Button onClick={() => scientificOperation("+/-")} className="bg-[#2d2d2d] hover:bg-gray-500 text-sm">+/-</Button>
+          <Button onClick={() => scientificOperation("%")} className="bg-[#2d2d2d] hover:bg-gray-500 text-sm">%</Button>
+          <Button onClick={() => performOperation("/")} className="bg-orange-500 hover:bg-orange-400 text-white" isPressed={operation === "/"}>/</Button>
 
-          <Button
-            onClick={() => setIsSecondFunction(!isSecondFunction)}
-            className={`text-sm ${
-              isSecondFunction
-                ? "bg-white text-black"
-                : "bg-[#2d2d2d] hover:bg-gray-500"
-            }`}
-          >
-            2nd
-          </Button>
-          <Button
-            onClick={() => scientificOperation("x²")}
-            className="bg-[#2d2d2d] hover:bg-gray-500 text-sm"
-          >
-            x²
-          </Button>
-          <Button
-            onClick={() => scientificOperation("x³")}
-            className="bg-[#2d2d2d] hover:bg-gray-500 text-sm"
-          >
-            x³
-          </Button>
-          <Button
-            onClick={() => performOperation("xʸ")}
-            className="bg-[#2d2d2d] hover:bg-gray-500 text-sm"
-          >
-            xʸ
-          </Button>
-          <Button
-            onClick={() => scientificOperation("eˣ")}
-            className="bg-[#2d2d2d] hover:bg-gray-500 text-sm"
-          >
-            eˣ
-          </Button>
-          <Button
-            onClick={() => scientificOperation("10ˣ")}
-            className="bg-[#2d2d2d] hover:bg-gray-500 text-sm"
-          >
-            10ˣ
-          </Button>
-          <Button
-            onClick={() => inputDigit(7)}
-            className="bg-[#6e6e6e] hover:bg-gray-500"
-          >
-            7
-          </Button>
-          <Button
-            onClick={() => inputDigit(8)}
-            className="bg-[#6e6e6e] hover:bg-gray-500"
-          >
-            8
-          </Button>
-          <Button
-            onClick={() => inputDigit(9)}
-            className="bg-[#6e6e6e] hover:bg-gray-500"
-          >
-            9
-          </Button>
-          <Button
-            onClick={() => performOperation("×")}
-            className="bg-orange-500 hover:bg-orange-400 text-white"
-            isPressed={operation === "×"}
-          >
-            ×
-          </Button>
+          <Button onClick={() => setIsSecondFunction(!isSecondFunction)} className={`text-sm ${isSecondFunction ? "bg-white text-black" : "bg-[#2d2d2d] hover:bg-gray-500"}`}>2nd</Button>
+          <Button onClick={() => scientificOperation("x^2")} className="bg-[#2d2d2d] hover:bg-gray-500 text-sm">x^2</Button>
+          <Button onClick={() => scientificOperation("x^3")} className="bg-[#2d2d2d] hover:bg-gray-500 text-sm">x^3</Button>
+          <Button onClick={() => performOperation("x^y")} className="bg-[#2d2d2d] hover:bg-gray-500 text-sm">x^y</Button>
+          <Button onClick={() => scientificOperation("exp")} className="bg-[#2d2d2d] hover:bg-gray-500 text-sm">exp</Button>
+          <Button onClick={() => scientificOperation("10^x")} className="bg-[#2d2d2d] hover:bg-gray-500 text-sm">10^x</Button>
+          <Button onClick={() => inputDigit(7)} className="bg-[#6e6e6e] hover:bg-gray-500">7</Button>
+          <Button onClick={() => inputDigit(8)} className="bg-[#6e6e6e] hover:bg-gray-500">8</Button>
+          <Button onClick={() => inputDigit(9)} className="bg-[#6e6e6e] hover:bg-gray-500">9</Button>
+          <Button onClick={() => performOperation("*")} className="bg-orange-500 hover:bg-orange-400 text-white" isPressed={operation === "*"}>*</Button>
 
-          <Button
-            onClick={() => scientificOperation("¹/x")}
-            className="bg-[#2d2d2d] hover:bg-gray-500 text-sm"
-          >
-            ¹⁄ₓ
-          </Button>
-          <Button
-            onClick={() => scientificOperation("²√x")}
-            className="bg-[#2d2d2d] hover:bg-gray-500 text-sm"
-          >
-            ²√x
-          </Button>
-          <Button
-            onClick={() => scientificOperation("³√x")}
-            className="bg-[#2d2d2d] hover:bg-gray-500 text-sm"
-          >
-            ³√x
-          </Button>
-          <Button
-            onClick={() => scientificOperation("ʸ√x")}
-            className="bg-[#2d2d2d] hover:bg-gray-500 text-sm"
-          >
-            ʸ√x
-          </Button>
-          <Button
-            onClick={() => scientificOperation("ln")}
-            className="bg-[#2d2d2d] hover:bg-gray-500 text-sm"
-          >
-            ln
-          </Button>
-          <Button
-            onClick={() => scientificOperation("log₁₀")}
-            className="bg-[#2d2d2d] hover:bg-gray-500 text-sm"
-          >
-            log₁₀
-          </Button>
-          <Button
-            onClick={() => inputDigit(4)}
-            className="bg-[#6e6e6e] hover:bg-gray-500"
-          >
-            4
-          </Button>
-          <Button
-            onClick={() => inputDigit(5)}
-            className="bg-[#6e6e6e] hover:bg-gray-500"
-          >
-            5
-          </Button>
-          <Button
-            onClick={() => inputDigit(6)}
-            className="bg-[#6e6e6e] hover:bg-gray-500"
-          >
-            6
-          </Button>
-          <Button
-            onClick={() => performOperation("−")}
-            className="bg-orange-500 hover:bg-orange-400 text-white"
-            isPressed={operation === "−"}
-          >
-            −
-          </Button>
+          <Button onClick={() => scientificOperation("1/x")} className="bg-[#2d2d2d] hover:bg-gray-500 text-sm">1/x</Button>
+          <Button onClick={() => scientificOperation("sqrt")} className="bg-[#2d2d2d] hover:bg-gray-500 text-sm">sqrt</Button>
+          <Button onClick={() => scientificOperation("cbrt")} className="bg-[#2d2d2d] hover:bg-gray-500 text-sm">cbrt</Button>
+          <Button onClick={() => scientificOperation("nthRoot")} className="bg-[#2d2d2d] hover:bg-gray-500 text-sm">y√x</Button>
+          <Button onClick={() => scientificOperation("ln")} className="bg-[#2d2d2d] hover:bg-gray-500 text-sm">ln</Button>
+          <Button onClick={() => scientificOperation("log10")} className="bg-[#2d2d2d] hover:bg-gray-500 text-sm">log10</Button>
+          <Button onClick={() => inputDigit(4)} className="bg-[#6e6e6e] hover:bg-gray-500">4</Button>
+          <Button onClick={() => inputDigit(5)} className="bg-[#6e6e6e] hover:bg-gray-500">5</Button>
+          <Button onClick={() => inputDigit(6)} className="bg-[#6e6e6e] hover:bg-gray-500">6</Button>
+          <Button onClick={() => performOperation("-")} className="bg-orange-500 hover:bg-orange-400 text-white" isPressed={operation === "-"}>-</Button>
 
-          <Button
-            onClick={() => scientificOperation("x!")}
-            className="bg-[#2d2d2d] hover:bg-gray-500 text-sm"
-          >
-            x!
-          </Button>
-          <Button
-            onClick={() => scientificOperation("sin")}
-            className="bg-[#2d2d2d] hover:bg-gray-500 text-sm"
-          >
-            sin
-          </Button>
-          <Button
-            onClick={() => scientificOperation("cos")}
-            className="bg-[#2d2d2d] hover:bg-gray-500 text-sm"
-          >
-            cos
-          </Button>
-          <Button
-            onClick={() => scientificOperation("tan")}
-            className="bg-[#2d2d2d] hover:bg-gray-500 text-sm"
-          >
-            tan
-          </Button>
-          <Button
-            onClick={() => insertConstant("e")}
-            className="bg-[#2d2d2d] hover:bg-gray-500 text-sm"
-          >
-            e
-          </Button>
-          <Button
-            onClick={() => {}}
-            className="bg-[#2d2d2d] hover:bg-gray-500 text-sm"
-          >
-            EE
-          </Button>
-          <Button
-            onClick={() => inputDigit(1)}
-            className="bg-[#6e6e6e] hover:bg-gray-500"
-          >
-            1
-          </Button>
-          <Button
-            onClick={() => inputDigit(2)}
-            className="bg-[#6e6e6e] hover:bg-gray-500"
-          >
-            2
-          </Button>
-          <Button
-            onClick={() => inputDigit(3)}
-            className="bg-[#6e6e6e] hover:bg-gray-500"
-          >
-            3
-          </Button>
-          <Button
-            onClick={() => performOperation("+")}
-            className="bg-orange-500 hover:bg-orange-400 text-white"
-            isPressed={operation === "+"}
-          >
-            +
-          </Button>
+          <Button onClick={() => scientificOperation("fact")} className="bg-[#2d2d2d] hover:bg-gray-500 text-sm">n!</Button>
+          <Button onClick={() => scientificOperation("sin")} className="bg-[#2d2d2d] hover:bg-gray-500 text-sm">sin</Button>
+          <Button onClick={() => scientificOperation("cos")} className="bg-[#2d2d2d] hover:bg-gray-500 text-sm">cos</Button>
+          <Button onClick={() => scientificOperation("tan")} className="bg-[#2d2d2d] hover:bg-gray-500 text-sm">tan</Button>
+          <Button onClick={() => insertConstant("e")} className="bg-[#2d2d2d] hover:bg-gray-500 text-sm">e</Button>
+          <Button onClick={() => {}} className="bg-[#2d2d2d] hover:bg-gray-500 text-sm">EE</Button>
+          <Button onClick={() => inputDigit(1)} className="bg-[#6e6e6e] hover:bg-gray-500">1</Button>
+          <Button onClick={() => inputDigit(2)} className="bg-[#6e6e6e] hover:bg-gray-500">2</Button>
+          <Button onClick={() => inputDigit(3)} className="bg-[#6e6e6e] hover:bg-gray-500">3</Button>
+          <Button onClick={() => performOperation("+")} className="bg-orange-500 hover:bg-orange-400 text-white" isPressed={operation === "+"}>+</Button>
 
-          <Button
-            onClick={() => setIsRadians(!isRadians)}
-            className={`text-sm ${
-              isRadians
-                ? "bg-[#2d2d2d] text-white"
-                : "bg-[#2d2d2d] hover:bg-gray-500"
-            }`}
-          >
-            Rad
-          </Button>
-          <Button
-            onClick={() => scientificOperation("sinh")}
-            className="bg-[#2d2d2d] hover:bg-gray-500 text-sm"
-          >
-            sinh
-          </Button>
-          <Button
-            onClick={() => scientificOperation("cosh")}
-            className="bg-[#2d2d2d] hover:bg-gray-500 text-sm"
-          >
-            cosh
-          </Button>
-          <Button
-            onClick={() => scientificOperation("tanh")}
-            className="bg-[#2d2d2d] hover:bg-gray-500 text-sm"
-          >
-            tanh
-          </Button>
-          <Button
-            onClick={() => insertConstant("π")}
-            className="bg-[#2d2d2d] hover:bg-gray-500 text-sm"
-          >
-            π
-          </Button>
-          <Button
-            onClick={() => scientificOperation("Rand")}
-            className="bg-[#2d2d2d] hover:bg-gray-500 text-sm"
-          >
-            Rand
-          </Button>
-          <Button
-            onClick={() => inputDigit(0)}
-            className="bg-[#6e6e6e] hover:bg-gray-500 col-span-2"
-          >
-            0
-          </Button>
-          <Button
-            onClick={inputDecimal}
-            className="bg-[#6e6e6e] hover:bg-gray-500"
-          >
-            .
-          </Button>
-          <Button
-            onClick={calculate}
-            className="bg-orange-500 hover:bg-orange-400 text-white"
-          >
-            =
-          </Button>
+          <Button onClick={() => setIsRadians(!isRadians)} className={`text-sm ${isRadians ? "bg-[#2d2d2d] text-white" : "bg-[#2d2d2d] hover:bg-gray-500"}`}>Rad</Button>
+          <Button onClick={() => scientificOperation("sinh")} className="bg-[#2d2d2d] hover:bg-gray-500 text-sm">sinh</Button>
+          <Button onClick={() => scientificOperation("cosh")} className="bg-[#2d2d2d] hover:bg-gray-500 text-sm">cosh</Button>
+          <Button onClick={() => scientificOperation("tanh")} className="bg-[#2d2d2d] hover:bg-gray-500 text-sm">tanh</Button>
+          <Button onClick={() => insertConstant("pi")} className="bg-[#2d2d2d] hover:bg-gray-500 text-sm">pi</Button>
+          <Button onClick={() => scientificOperation("Rand")} className="bg-[#2d2d2d] hover:bg-gray-500 text-sm">Rand</Button>
+          <Button onClick={() => inputDigit(0)} className="bg-[#6e6e6e] hover:bg-gray-500 col-span-2">0</Button>
+          <Button onClick={inputDecimal} className="bg-[#6e6e6e] hover:bg-gray-500">.</Button>
+          <Button onClick={calculate} className="bg-orange-500 hover:bg-orange-400 text-white">=</Button>
         </div>
       </div>
       {showConfetti && <ConfettiExplosion />}
